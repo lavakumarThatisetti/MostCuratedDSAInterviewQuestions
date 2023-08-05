@@ -26,6 +26,22 @@ public class MajorityElement_169 {
         return ret;
     }
 
+    /*
+        (ans, count)
+        (-1,   0)
+
+        [2,       2,        1,        1,     1,     2,     2]
+        (2, -1), (2,-2) , (2, -1), (2,0 ), (1,-1), (1,0), (2,-1) != ++
+        (2, 1), (2,2),     (2,1), (2, 0), (1, 1), (1,0), (2, 1) != --
+
+        i = 0 to n
+         if count == 0  ans =  arr[i]
+
+         if(arr[i] != ans)
+            count--;
+         else
+            count++;
+     */
     public static int majorityElement(int[] nums) {
         int count = 0;
         int candidate = -1;
