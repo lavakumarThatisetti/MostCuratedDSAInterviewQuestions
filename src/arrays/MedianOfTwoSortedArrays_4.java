@@ -1,5 +1,30 @@
 package arrays;
+/*
+  l1  r1
 
+
+        int low=0;
+        int high=x;
+
+  [3, 9, 100]  low , high  = low+high/2
+
+  [1, 2, 4, 90] low2, high2 = low2+high2/2
+
+      [3, 9] , [2,4]
+
+      2    4
+  low = 0   h=x
+
+  cut1 = low+high/2
+  cut2 = x+y/2 - cut1
+
+
+
+  l2 r2
+  Min(r1, r2), max(l1, l2) + min(r1, r2) /2
+
+
+ */
 public class MedianOfTwoSortedArrays_4 {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         return MedianSameSize(nums1,nums2);
@@ -28,7 +53,7 @@ public class MedianOfTwoSortedArrays_4 {
 
 
             // treat cut1 as a mid
-            // if l1>l2 which means first array has larger values compared to second array
+            // if l1>r2 which means first array has larger values compared to second array
             // we should decrease high ( not required those values) means decrement high
             if(l1>r2) high = cut1-1;
             // if l2>r1 then fromm array1 we move right which means increase low
@@ -54,8 +79,8 @@ public class MedianOfTwoSortedArrays_4 {
     }
 
     public static void main(String[] args) {
-        int[] arr1 = {1,2};
-        int[] arr2 = {3,4};
+        int[] arr1 = {1,5,6,7,8,9};
+        int[] arr2 = {2,2,3,4,5,6,7};
         System.out.println(findMedianSortedArrays(arr1,arr2));
     }
 }
