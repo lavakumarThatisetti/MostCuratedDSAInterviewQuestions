@@ -1,5 +1,19 @@
 package linkedlist;
 
+
+/*
+Traverse back
+
+Hashmap ( Current, PrevAddress)
+(1000, null)
+(1002, 1000)
+(1004, 1002)
+
+ */
+
+
+
+
 public class SingleLinkedList {
     Node head; // head
 
@@ -58,6 +72,23 @@ public class SingleLinkedList {
         // move head to next node
         head = head.next;
     }
+
+    public void deleteFromEnd() {
+        if (head == null)
+        {
+            System.out.println ("List is empty, not possible to delete");
+            return;
+        }
+
+        System.out.println ("Deleted: " + head.data);
+        // move head to next node
+        Node last = head;
+        while (last.next.next != null) {
+            last = last.next;
+        }
+        // Insert the new_node at last node
+        last.next = null;
+    }
     public void deleteByKey(int key) {
         // Store head node
         Node currNode = head, prev = null;
@@ -87,11 +118,9 @@ public class SingleLinkedList {
             prev.next = currNode.next;
             // Display the message
             System.out.println(key + " found and deleted");
-        }
-        // CASE 3: The key is not present
-        // If key was not present in linked list currNode should be null
-        if (currNode == null) {
-            // Display the message
+        } else{
+            // CASE 3: The key is not present
+            // If key was not present in linked list currNode should be null
             System.out.println(key + " not found");
         }
     }
@@ -107,20 +136,45 @@ public class SingleLinkedList {
         System.out.println ();
     }
 
+    public Node addTwoNumbers(Node l1, Node l2) {
+        l1 = head;
+        l2 = head;
+        Node L3 = new Node(0);
+        Node curr=L3;
+        int carry=0;
+        while(l1!=null || l2!=null){
+            int x=(l1!=null)?l1.data:0;
+            int y=(l2!=null)?l2.data:0;
+            int sum =carry+x+y;
+            carry=sum/10;
+            curr.next=new Node(sum%10);
+
+            curr=curr.next;
+            if(l1!=null) l1=l1.next;
+            if(l2!=null) l2=l2.next;
+        }
+        if(carry>0){
+            curr.next =new Node(carry);
+        }
+        return L3.next;
+    }
+
     public static void main(String[] args) {
         SingleLinkedList listObj = new SingleLinkedList();
 
-        listObj.insertAtBeginning (25);
-        listObj.insertAtBeginning(20);
-        listObj.insertAtBeginning(15);
-        listObj.insertAtEnd(10);
-        listObj.insertAtEnd(5);
+        listObj.insertAtBeginning (2);
+        listObj.insertAtBeginning(4);
+        listObj.insertAtBeginning(6);
+//        listObj.insertAtEnd(10);
+//        listObj.insertAtEnd(5);
 
         listObj.display ();
 
-        listObj.deleteFromBeginning();
-        listObj.deleteByKey(15);
+//        listObj.deleteFromBeginning();
+//        listObj.deleteByKey(15);
 
         listObj.display ();
+
+        listObj.addTwoNumbers(null, null);
     }
 }

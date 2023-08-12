@@ -1,5 +1,13 @@
 package linkedlist;
 
+/*
+
+HashMap ( Ky,value) =  (data, Node)
+
+current = map.get(data)
+current.prev.next = current.next;
+current.next.prev = current.prev;
+ */
 public class DoublyLinkedList {
     
     //this Node always point to first Node 
